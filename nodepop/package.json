@@ -7,12 +7,16 @@
     "lib": "lib"
   },
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "cross-env DEBUG=nodepop:* nodemon server.js"
   },
   "author": "",
   "license": "ISC",
   "description": "",
   "dependencies": {
-    "express": "^4.21.1"
+    "cross-env": "^7.0.3",
+    "debug": "^4.3.7",
+    "express": "^4.21.1",
+    "nodemon": "^3.1.7"
   }
 }

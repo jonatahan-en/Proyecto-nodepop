@@ -1,16 +1,14 @@
-import express from 'express'
 import http from 'node:http'
+import debugLib from 'debug'
+import app from './app.js'
 
-// creamos una instancia de express
-const app = express()
-
-
-app.get('/', (req, res, next) => {
-    res.send('Hola')
-})
+// variable de entorno
+const debug = debugLib('nodepop:server')
+const port = process.env.PORT || 3100
 
 // Create http server
 const server = http.createServer(app)
 
-server.on('listening',() => {console.log('Servidor arrancado')})
-server.listen(3100)
+server.on('error', err => console.error(err))
+server.on('listening', () => { debug(`Servidor arrancado en el puerto ${port}`)})
+server.listen(port)
