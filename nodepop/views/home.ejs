@@ -1,0 +1,12 @@
+<%- include('header.ejs') %>
+    <h1><%= PopName %></h1>
+
+    <p>El segundo actual</p>
+
+    <h2>ingrese productos usuario bucle</h2>
+    <% users.forEach(user => { %>
+        <p><%= user.name %> tiene <%= user.age %> años </p>
+    <% }) %>
+    <h2>Maquetado</h2>
+
+<%- include('footer.ejs') %>
