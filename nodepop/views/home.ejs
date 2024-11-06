@@ -4,9 +4,17 @@
     <p>El segundo actual</p>
 
     <h2>ingrese productos usuario bucle</h2>
-    <% users.forEach(user => { %>
-        <p><%= user.name %> tiene <%= user.age %> años </p>
+    <% products.forEach(product => { %>
+        <p> producto: <%= product.name %> 
+            price:  <%= product.price %> 
+            foto:  <%= product.foto %> 
+            tags: <% product.tags %></p>
     <% }) %>
+
+
+
+
+
     <h2>Maquetado</h2>
 
 <%- include('footer.ejs') %>

@@ -8,7 +8,8 @@
   },
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "cross-env DEBUG=nodepop:* nodemon server.js"
+    "star": " cross-env NODEPOP_ENV=production node server.js",
+    "dev": "cross-env DEBUG=nodepop:* NODEPOP_ENV=development nodemon server.js"
   },
   "author": "",
   "license": "ISC",
@@ -18,7 +19,9 @@
     "debug": "^4.3.7",
     "ejs": "^3.1.10",
     "express": "^4.21.1",
+    "express-validator": "^7.2.0",
     "http-errors": "^2.0.0",
+    "mongoose": "^8.8.0",
     "morgan": "^1.10.0",
     "nodemon": "^3.1.7"
   }
