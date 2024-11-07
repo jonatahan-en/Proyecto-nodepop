@@ -30,7 +30,14 @@ export async function postLogin(req,res ,next){
        // redirect a la home 
         res.redirect('/')   
     } catch (error) {
-        next()
+        next(error)
         
     }
+}
+
+export function logout(req, res, next){
+    req.session.regenerate(err => {
+        if (err) return next(err)
+            res.redirect('/')
+    })
 }

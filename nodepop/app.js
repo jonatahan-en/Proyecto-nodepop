@@ -31,6 +31,7 @@ app.get('/', homeController.index)
 app.get('/list_in_product',homeController.listInpruductValidation, homeController.listInProduct)
 app.get('/login', loginController.index)
 app.post('/login', loginController.postLogin)
+app.all('/logout', loginController.logout)
 
 
 
