@@ -1,20 +1,14 @@
 <%- include('header.ejs') %>
-    <h1><%= PopName %></h1>
-
+<div class="container">
     <p>El segundo actual</p>
-
     <h2>ingrese productos usuario bucle</h2>
     <% products.forEach(product => { %>
         <p> producto: <%= product.name %> 
             price:  <%= product.price %> 
-            foto:  <%= product.foto %> 
+            foto: <a href=""><%= product.foto %></a> 
             tags: <% product.tags %></p>
     <% }) %>
-
-
-
-
-
     <h2>Maquetado</h2>
+</div>
 
 <%- include('footer.ejs') %>

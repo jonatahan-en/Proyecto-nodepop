@@ -3,6 +3,7 @@ import createError from 'http-errors'
 import logger from 'morgan'
 import * as homeController from './controllers/homeController.js'
 import connectMongoose from './lib/connectMongoose.js'
+import * as loginController from './controllers/loginController.js'
 
 // conexion de mongoose
 await connectMongoose()
@@ -10,7 +11,7 @@ console.log('Conectado a mongoDB ')
 // Creamos una instancia para express
 const app = express()
 // para que en todas las vistas se lea Nodepop
-app.locals.PopName = 'Nodepop!'
+app.locals.PopName = 'Nodepop'
 //variable predefinida de express(views) se coenecta con html
 app.set('views', 'views')// views folder
 app.set('view engine', 'ejs')
@@ -21,10 +22,12 @@ app.use(express.json())//que venga en formato JSON
 app.use(express.urlencoded({extended: true }))// que venga urlencoded(formularios)
 
 
+
 //rutas de la aplicacion(application routes)
 app.get('/', homeController.index)
 app.get('/list_in_product',homeController.listInpruductValidation, homeController.listInProduct)
-
+app.get('/login', loginController.index)
+app.post('/login', loginController.postLogin)
 
 
 
