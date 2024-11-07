@@ -21,7 +21,13 @@ export async function postLogin(req,res ,next){
             res.render('login')
             return
         }
-        // si el usuario existe y la contraseña coincide 
+
+
+        // si el usuario existe y la contraseña coincide
+        req.session.userId = user._id
+        req.session.userName = user.username
+
+       // redirect a la home 
         res.redirect('/')   
     } catch (error) {
         next()

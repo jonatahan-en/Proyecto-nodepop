@@ -5,7 +5,8 @@ import Product from '../models/Product.js'
 
 export async function index(req, res, next){
     res.locals.products = await Product.find() 
-   // res.locals.users = [] 
+   // console.log(req.session)
+
 
     res.render('home')
 }

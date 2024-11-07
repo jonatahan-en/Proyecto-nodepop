@@ -1,9 +1,10 @@
 import express from 'express'
 import createError from 'http-errors'
 import logger from 'morgan'
-import * as homeController from './controllers/homeController.js'
 import connectMongoose from './lib/connectMongoose.js'
+import * as homeController from './controllers/homeController.js'
 import * as loginController from './controllers/loginController.js'
+import * as sessionManager from './lib/sessionManager.js'
 
 // conexion de mongoose
 await connectMongoose()
@@ -24,6 +25,8 @@ app.use(express.urlencoded({extended: true }))// que venga urlencoded(formulario
 
 
 //rutas de la aplicacion(application routes)
+app.use(sessionManager.middleware, sessionManager.useSessionInViews)
+
 app.get('/', homeController.index)
 app.get('/list_in_product',homeController.listInpruductValidation, homeController.listInProduct)
 app.get('/login', loginController.index)

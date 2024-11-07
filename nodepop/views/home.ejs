@@ -1,5 +1,7 @@
 <%- include('header.ejs') %>
 <div class="container">
+    <p>User ID: <%= session.userId %></p>
+
     <p>El segundo actual</p>
     <h2>ingrese productos usuario bucle</h2>
     <% products.forEach(product => { %>
