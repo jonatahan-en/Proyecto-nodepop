@@ -13,8 +13,8 @@ if(questionResponse.toLowerCase() !== 'yes') {
     process.exit()
 }
 
-await initProducts()
 await initUsers()
+await initProducts()
 connection.close()
 
 
@@ -24,12 +24,17 @@ async function initProducts() {
     // delete all agents
     const deleteResult = await Product.deleteMany()
     console.log(`Deleted ${deleteResult.deletedCount} products`)
+
+    const [megabox,altex] = await Promise.all([
+        User.findOne({ username: 'megabox'}),
+        User.findOne({ username: 'altex'}),
+    ])
+
     // create initiala Products
-    
     const insertResult = await Product.insertMany([
-        {name: 'watches', price: 350,  foto:'https://www.apple.com/watch/',tags:'mobile'},
-        {name: 'changer', price: 38,  foto:'https://www.amazon.es/cargador-iphone-12/s?k=cargador+iphone+12',tags:'mobile'},
-        {name: 'table appel 11 pro', price: 400,  foto:'https://www.emag.ro/search/ipad+11+pro',tags:'mobile'}
+        {name: 'watches', price: 350,  image:'watch t55.jpg',tags:'mobile', owner: megabox._id},
+        {name: 'changer', price: 38,  image:'Cargador.jpg',tags:'mobile', owner: megabox._id},
+        {name: 'table appel 11 pro', price: 400,  image:'tablet ipad 11 pro.jpg',tags:'mobile', owner: altex._id}
     ])
     console.log(`Created ${insertResult.length} products.` )
 }
@@ -47,15 +52,6 @@ async function initUsers() {
     ])
     console.log(`Created ${insertResult.length} users.` )
 }
-
-
-
-
-
-
-
-
-
 function ask(questionText){
     return new Promise((resolve, reject) =>{ 
         const consoleInterface = readline.createInterface({

@@ -4,10 +4,12 @@ import Product from '../models/Product.js'
 
 
 export async function index(req, res, next){
-    res.locals.products = await Product.find() 
+    const userId = req.session.userId
+    if (userId){
+    res.locals.products = await Product.find({owner:userId}) 
+    }   
    // console.log(req.session)
-
-
+    
     res.render('home')
 }
 

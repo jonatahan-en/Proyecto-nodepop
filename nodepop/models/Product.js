@@ -6,7 +6,8 @@ const productSchema = Schema({
     name: { type: String , unique: true},
     price: Number,
     image: String,
-    tags: [String]
+    tags: [String],
+    owner:{type: Schema.Types.ObjectId, ref:'User'}
 })
 // Creamos el modelo de products
 

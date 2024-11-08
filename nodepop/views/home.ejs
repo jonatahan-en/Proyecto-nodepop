@@ -9,22 +9,22 @@
     <% } %>
 
     <% // contenido para usuarios logados %>
+
     <% if (session.userId) { %>
-        <h2>Ingresar productos usuario bucle</h2>
+        <h2>Ingresar productos usuario </h2>
         <% products.forEach(product => { %>
         <p>
-            producto: <%= product.name %> <br>
-            precio: <%= product.price %> <br>
+            <h4>producto:  <%= product.name %> <a href="/products/delete/<%= product.id %>"><i class="bi bi-trash"></i></a></h4><br>
+            <h5>precio: <%= product.price %></h5> <br>
             <img src="/imagen-product/<%= product.image %>" alt="Imagen de <%= product.name %>" style="width: 200px; height: auto;"><br>
-
-            etiquetas:
+            <h5>etiquetas:
             <% if (product.tags && product.tags.length > 0) { %>
             <% product.tags.forEach(tag => { %>
                 <span><%= tag %></span>
             <% }) %>
             <% } else { %>
             Sin etiquetas
-            <% } %>
+            <% } %></h5>
         </p>
         <% }) %>
     <% } %>

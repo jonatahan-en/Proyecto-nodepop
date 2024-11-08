@@ -38,6 +38,8 @@ app.use(express.static('public'));
 // private pages
 app.get('/products/new',sessionManager.isLoggedIn, productController.index)
 app.post('/products/new',sessionManager.isLoggedIn, productController.postNew)
+app.get('/products/delete/:productId',sessionManager.isLoggedIn,productController.deleteProduct)
+
 
 
 
