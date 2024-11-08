@@ -5,8 +5,8 @@ import mongoose, { Schema } from 'mongoose'
 const productSchema = Schema({
     name: { type: String , unique: true},
     price: Number,
-    foto: String,
-    tags: String
+    image: String,
+    tags: [String]
 })
 // Creamos el modelo de products
 

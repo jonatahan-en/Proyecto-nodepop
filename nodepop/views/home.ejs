@@ -1,7 +1,6 @@
 <%- include('header.ejs') %>
 <div class="container">
     <p>User ID: <%= session.userId %></p>
-
     <p>El segundo actual</p>
 
     <% // contenido para usuarios NO logados %>
@@ -11,21 +10,23 @@
 
     <% // contenido para usuarios logados %>
     <% if (session.userId) { %>
-        <h2>ingrese productos usuario bucle</h2>
+        <h2>Ingresar productos usuario bucle</h2>
         <% products.forEach(product => { %>
-            <p> producto: <%= product.name %> 
-                price:  <%= product.price %> 
-                foto: <a href=""><%= product.foto %></a> 
-                tags: <% product.tags %></p>
+        <p>
+            producto: <%= product.name %> <br>
+            precio: <%= product.price %> <br>
+            <img src="/imagen-product/<%= product.image %>" alt="Imagen de <%= product.name %>" style="width: 200px; height: auto;"><br>
+
+            etiquetas:
+            <% if (product.tags && product.tags.length > 0) { %>
+            <% product.tags.forEach(tag => { %>
+                <span><%= tag %></span>
+            <% }) %>
+            <% } else { %>
+            Sin etiquetas
+            <% } %>
+        </p>
         <% }) %>
     <% } %>
-
-
-
-
-
-
-    <h2>Maquetado</h2>
 </div>
-
 <%- include('footer.ejs') %>
