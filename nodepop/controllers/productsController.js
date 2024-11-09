@@ -1,5 +1,6 @@
 import Product from '../models/Product.js'
 import createError from 'http-errors'
+import {validationResult} from 'express-validator'
 
 
 export function index(req,res,next){
