@@ -3,15 +3,20 @@ import {query, validationResult} from 'express-validator'
 import Product from '../models/Product.js'
 
 
-export async function index(req, res, next){
-    const userId = req.session.userId
-    if (userId){
-    res.locals.products = await Product.find({owner:userId}) 
-    }   
-   // console.log(req.session)
-    
-    res.render('home')
+export async function index(req, res, next) {
+    try {
+        const userId = req.session.userId;
+        const skip = parseInt(req.query.skip) || 0;
+        const limit = parseInt(req.query.limit) || 3;
+
+        const products = await Product.find({ owner: userId })
+            .skip(skip).limit(limit);
+        res.render('home', { products, skip, limit});
+    } catch (error) {
+        next(error);
+    }
 }
+
 
 
 // GET / list_in_product?product=shows&size=M&color=blue

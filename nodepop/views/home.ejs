@@ -1,6 +1,6 @@
 <%- include('header.ejs') %>
 <div class="container">
-    <p>User ID: <%= session.userId %></p>
+    <p>User ID: <%= session.userName %></p>
     <p>El segundo actual</p>
 
     <% // contenido para usuarios NO logados %>
@@ -29,4 +29,11 @@
         <% }) %>
     <% } %>
 </div>
+<div>
+    <% if (skip > 0) { %>
+        <a href="?skip=<%= skip - limit %>&limit=<%= limit %>">Anterior</a>
+    <% } %>
+    <a href="?skip=<%= skip + limit %>&limit=<%= limit %>">Siguiente</a>
+</div>
+
 <%- include('footer.ejs') %>

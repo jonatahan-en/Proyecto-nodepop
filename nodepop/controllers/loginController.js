@@ -24,8 +24,8 @@ export async function postLogin(req,res ,next){
 
 
         // si el usuario existe y la contraseña coincide
-        req.session.userId = user._id
-        req.session.userName = user.username
+        req.session.userId = user._id;
+        req.session.userName = user.username;
 
        // redirect a la home 
         res.redirect('/')   

@@ -22,7 +22,14 @@ export async function postNew(req,res, next){
         next(error)     
     }
 }
-// boorrar un producto 
+
+
+
+
+
+
+
+// borrar un producto 
 export async function deleteProduct(req, res, next) {
     const userId = req.session.userId
     const productId = req.params.productId
