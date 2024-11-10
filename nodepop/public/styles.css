@@ -1,0 +1,64 @@
+/* Estilos para el contenedor principal */
+.container {
+margin-top: 20px;
+}
+
+/* Estilos para los elementos de producto */
+.product-item {
+border: 1px solid #ddd;
+border-radius: 8px;
+padding: 15px;
+margin-bottom: 20px;
+box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-item h4 {
+font-size: 1.2rem;
+font-weight: bold;
+display: flex;
+align-items: center;
+justify-content: space-between;
+}
+
+.product-item h4 a {
+font-size: 1rem;
+text-decoration: none;
+color: red;
+}
+
+.product-item h4 a:hover {
+color: darkred;
+}
+
+.product-item img {
+max-width: 100%;
+height: auto;
+border-radius: 4px;
+margin-top: 10px;
+margin-bottom: 10px;
+}
+
+.product-item p {
+font-size: 1rem;
+margin: 5px 0;
+}
+
+/* Estilos para el texto de etiquetas */
+.product-item p strong {
+font-weight: bold;
+}
+
+.pagination {
+display: flex;
+justify-content: flex-end;
+gap: 10px;
+}
+
+.pagination .btn {
+padding: 8px 16px;
+font-size: 0.9rem;
+}
+
+.alert {
+font-size: 1.1rem;
+}
