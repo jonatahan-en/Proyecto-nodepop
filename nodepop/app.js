@@ -7,6 +7,7 @@ import * as homeController from './controllers/homeController.js'
 import * as loginController from './controllers/loginController.js'
 import * as productController from './controllers/productsController.js'
 
+
 // conexion de mongoose
 await connectMongoose()
 console.log('Conectado a mongoDB ')    
@@ -29,11 +30,12 @@ app.use(express.urlencoded({extended: true }))// que venga urlencoded(formulario
 app.use(sessionManager.middleware, sessionManager.useSessionInViews)
 // public pages
 app.get('/', homeController.index)
-app.get('/list_in_product',homeController.listInpruductValidation, homeController.listInProduct)
 app.get('/login', loginController.index)
 app.post('/login', loginController.postLogin)
 app.all('/logout', loginController.logout)
 app.use(express.static('public'));
+app.post('/products/new', productController.validateProduct, productController.postNew);
+
 
 // private pages
 app.get('/products/new',sessionManager.isLoggedIn, productController.index)

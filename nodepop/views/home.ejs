@@ -1,39 +1,41 @@
 <%- include('header.ejs') %>
+
 <div class="container">
-    <p>User ID: <%= session.userName %></p>
-    <p>El segundo actual</p>
-
-    <% // contenido para usuarios NO logados %>
+    <!-- Mostrar mensaje de login si el usuario no está autenticado -->
     <% if (!session.userId) { %>
-        <p>Para ver el contenido debe hacer <a href="/login">login</a></p>
-    <% } %>
-
-    <% // contenido para usuarios logados %>
-
-    <% if (session.userId) { %>
-        <h2>Ingresar productos usuario </h2>
+        <div class="alert alert-info mt-4">
+        <p>Para ver el contenido debe hacer <a href="/login" class="btn btn-primary">Login</a></p>
+        </div>
+    <% } else { %>
+        <!-- Mostrar la lista de productos si el usuario está autenticado -->
+        <h2 class="mt-4">Productos del Usuario</h2>
         <% products.forEach(product => { %>
-        <p>
-            <h4>producto:  <%= product.name %> <a href="/products/delete/<%= product.id %>"><i class="bi bi-trash"></i></a></h4><br>
-            <h5>precio: <%= product.price %></h5> <br>
-            <img src="/imagen-product/<%= product.image %>" alt="Imagen de <%= product.name %>" style="width: 200px; height: auto;"><br>
-            <h5>etiquetas:
+        <div class="product-item border rounded p-3 mb-3">
+            <h4>Producto: <%= product.name %> 
+            <a href="/products/delete/<%= product._id %>" class="text-danger ms-2" title="Eliminar producto">
+                <i class="bi bi-trash" style="color: red;"></i>
+            </a>
+            </h4>
+            <p><strong>Precio:</strong> <%= product.price %> €</p>
+            <img src="/imagen-product/<%= product.image %>" alt="Imagen de <%= product.name %>" class="img-fluid mb-3" style="max-width: 200px;">
+            <p><strong>Etiquetas:</strong> 
             <% if (product.tags && product.tags.length > 0) { %>
-            <% product.tags.forEach(tag => { %>
-                <span><%= tag %></span>
-            <% }) %>
+                <%= product.tags.join(', ') %>
             <% } else { %>
-            Sin etiquetas
-            <% } %></h5>
-        </p>
+                Sin etiquetas
+            <% } %>
+            </p>
+        </div>
         <% }) %>
+
+        <!-- Navegación de paginación -->
+        <div class="pagination mt-4">
+        <% if (skip > 0) { %>
+            <a href="?skip=<%= skip - limit %>&limit=<%= limit %>" class="btn btn-secondary">Anterior</a>
+        <% } %>
+        <a href="?skip=<%= skip + limit %>&limit=<%= limit %>" class="btn btn-secondary ms-2">Siguiente</a>
+        </div>
     <% } %>
-</div>
-<div>
-    <% if (skip > 0) { %>
-        <a href="?skip=<%= skip - limit %>&limit=<%= limit %>">Anterior</a>
-    <% } %>
-    <a href="?skip=<%= skip + limit %>&limit=<%= limit %>">Siguiente</a>
 </div>
 
 <%- include('footer.ejs') %>
